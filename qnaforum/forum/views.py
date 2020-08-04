@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import Forum, Questions
 # Create your views here.
 
@@ -27,8 +28,27 @@ def result(request):
     #     que.save()
     forum_test = Forum.objects.get(id=forum.id)
 
-    return render(request, 'results.html', {
-        'name':forum_test.name,
-        'question':forum_test.quest,
-        'answer': forum_test.ans
+    return JsonResponse({ 'name':forum_test.name,
+                    'question':forum_test.quest,
+                    'answer': forum_test.ans
+                })
+
+    # return render(request, 'results.html', {
+    #     'name':forum_test.name,
+    #     'question':forum_test.quest,
+    #     'answer': forum_test.ans
+    # })
+
+def fetch(request):
+    forum = Forum.objects.filter(quest='quest3')
+
+    names = []
+    answers = []
+    for f in forum:
+        names.append(f.name)
+        answers.append(f.ans)
+
+    return JsonResponse({
+        'names':names,
+        'answer':answers
     })
