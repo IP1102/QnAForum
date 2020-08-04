@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1> {{ message }} </h1> 
+
+    <div>
+        <form action="result" method="POST">
+            {% csrf_token %}
+            Enter name: <input type="text" name="name"> <br>
+            Select Question : 
+            <select name="quest" id="quest">
+                <option value="quest1">Is Shawshank Redemption the greatest movie of all time? Please explain.</option>
+                <option value="quest2">Is Django better than NodeJS?</option>
+                <option value="quest3">Where Nordic Gods real?</option>
+            </select> <br>
+            Enter your answer: <br>
+            <textarea name="ans" id="ans" cols="30" rows="5"></textarea>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
+
+</body>
+</html>
